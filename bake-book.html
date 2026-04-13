@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎂 Ella's Bake Book</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #fdf6f0;
+      --pink: #f2a7bb;
+      --pink-deep: #e07a97;
+      --pink-light: #fde8ef;
+      --blush: #fce4ec;
+      --mauve: #c2748a;
+      --cream: #fff8f3;
+      --brown: #5c3d2e;
+      --text: #3d2314;
+      --muted: #a07060;
+      --card: #ffffff;
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'Jost', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: rgba(253,246,240,0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(242,167,187,0.3);
+      padding: 0 1.5rem;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--pink-deep);
+      text-decoration: none;
+    }
+    nav { display: flex; gap: 2rem; }
+    nav a {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--pink-deep); }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .menu-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: var(--brown); border-radius: 2px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(160deg, #fde8ef 0%, #fdf6f0 60%);
+      padding: 5rem 1.5rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(242,167,187,0.2), transparent 70%);
+      top: -100px; right: -100px;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(252,228,236,0.4), transparent 70%);
+      bottom: -80px; left: -60px;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+    .hero-tag {
+      display: inline-block;
+      background: var(--pink-light);
+      color: var(--pink-deep);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      line-height: 1.1;
+      color: var(--brown);
+      margin-bottom: 1rem;
+    }
+    .hero h1 em { color: var(--pink-deep); font-style: italic; }
+    .hero p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-pink {
+      background: var(--pink-deep);
+      color: white;
+      padding: 0.75rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(224,122,151,0.3);
+    }
+    .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(224,122,151,0.4); }
+    .btn-outline-pink {
+      border: 1.5px solid var(--pink);
+      color: var(--pink-deep);
+      padding: 0.75rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    .btn-outline-pink:hover { background: var(--pink-light); }
+
+    /* ===== SECTION SHARED ===== */
+    section { padding: 4rem 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pink-deep);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--brown);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .divider {
+      width: 40px; height: 3px;
+      background: linear-gradient(90deg, var(--pink), var(--pink-deep));
+      border-radius: 2px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ===== CATEGORIES ===== */
+    #categories { background: var(--cream); }
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .cat-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid rgba(242,167,187,0.2);
+      cursor: pointer;
+      transition: all 0.25s;
+      text-decoration: none;
+      display: block;
+    }
+    .cat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(224,122,151,0.15);
+      border-color: var(--pink);
+    }
+    .cat-emoji { font-size: 2.2rem; margin-bottom: 0.5rem; display: block; }
+    .cat-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--brown);
+      font-weight: 600;
+    }
+    .cat-count { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* ===== RECIPES ===== */
+    #recipes { background: var(--bg); }
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .recipe-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(242,167,187,0.2);
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .recipe-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(224,122,151,0.15);
+    }
+    .recipe-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+    }
+    .r1 .recipe-thumb { background: linear-gradient(135deg, #fce4ec, #f8bbd0); }
+    .r2 .recipe-thumb { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
+    .r3 .recipe-thumb { background: linear-gradient(135deg, #fce4ec, #e1bee7); }
+    .r4 .recipe-thumb { background: linear-gradient(135deg, #f3e5f5, #ce93d8); }
+    .r5 .recipe-thumb { background: linear-gradient(135deg, #fff8e1, #ffecb3); }
+    .r6 .recipe-thumb { background: linear-gradient(135deg, #fce4ec, #f48fb1); }
+
+    .recipe-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: white;
+      color: var(--pink-deep);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 50px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .recipe-body { padding: 1.2rem 1.4rem 1.4rem; }
+    .recipe-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--brown);
+      margin-bottom: 0.4rem;
+    }
+    .recipe-body p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .recipe-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .recipe-meta span { display: flex; align-items: center; gap: 0.3rem; }
+
+    /* ===== FEATURED RECIPE ===== */
+    #featured { background: linear-gradient(160deg, #fde8ef, #fdf6f0); }
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .featured-visual {
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      border-radius: 24px;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      box-shadow: 0 20px 60px rgba(224,122,151,0.2);
+    }
+    .featured-tag {
+      display: inline-block;
+      background: var(--pink-light);
+      color: var(--pink-deep);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .featured-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--brown);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .featured-text p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .ingredients-preview {
+      background: white;
+      border-radius: 16px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(242,167,187,0.2);
+    }
+    .ingredients-preview h4 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--brown);
+      margin-bottom: 0.8rem;
+    }
+    .ing-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .ing-pill {
+      background: var(--pink-light);
+      color: var(--mauve);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: 50px;
+      font-weight: 500;
+    }
+
+    /* ===== TIPS ===== */
+    #tips { background: var(--cream); }
+    .tips-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .tip-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.4rem;
+      border: 1px solid rgba(242,167,187,0.2);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .tip-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      background: var(--pink-light);
+      width: 50px; height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tip-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--brown);
+      margin-bottom: 0.3rem;
+    }
+    .tip-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--brown);
+      color: rgba(255,255,255,0.7);
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--pink);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    footer p { font-size: 0.85rem; line-height: 1.8; max-width: 400px; margin: 0 auto 1.5rem; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--pink); }
+    .footer-bottom {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(61,35,20,0.6);
+      z-index: 200;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: white;
+      border-radius: 24px 24px 0 0;
+      padding: 2rem 1.5rem;
+      width: 100%;
+      max-width: 600px;
+      max-height: 85vh;
+      overflow-y: auto;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-handle {
+      width: 40px; height: 4px;
+      background: #e0e0e0;
+      border-radius: 2px;
+      margin: 0 auto 1.5rem;
+    }
+    .modal h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--brown);
+      margin-bottom: 0.3rem;
+    }
+    .modal-meta {
+      display: flex; gap: 1rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .modal h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--brown);
+      margin: 1.2rem 0 0.7rem;
+    }
+    .modal ul, .modal ol {
+      padding-left: 1.2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 2;
+    }
+    .modal-close {
+      float: right;
+      background: var(--pink-light);
+      border: none;
+      color: var(--pink-deep);
+      font-size: 1.2rem;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ===== TABLET ===== */
+    @media (min-width: 640px) {
+      .cat-grid { grid-template-columns: repeat(4, 1fr); }
+      .recipe-grid { grid-template-columns: repeat(2, 1fr); }
+      .tips-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ===== DESKTOP ===== */
+    @media (min-width: 1024px) {
+      .recipe-grid { grid-template-columns: repeat(3, 1fr); }
+      .featured-grid { grid-template-columns: 1fr 1.2fr; }
+      .tips-grid { grid-template-columns: repeat(3, 1fr); }
+      .modal { border-radius: 24px; align-self: center; margin: 1rem; }
+      .modal-overlay { align-items: center; }
+    }
+
+    /* ===== MOBILE NAV ===== */
+    @media (max-width: 639px) {
+      .menu-toggle { display: flex; }
+      nav {
+        display: none;
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.2rem;
+        border-bottom: 1px solid var(--pink-light);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      }
+      nav.open { display: flex; }
+      nav a { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- RECIPE MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-handle"></div>
+    <button class="modal-close" id="modalClose">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="nav-inner">
+    <a href="#" class="logo">Ella's Bake Book</a>
+    <button class="menu-toggle" id="menuBtn">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mainNav">
+      <a href="#categories">Categories</a>
+      <a href="#recipes">Recipes</a>
+      <a href="#featured">Featured</a>
+      <a href="#tips">Tips</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <span class="hero-tag">🌸 Homemade with Love</span>
+    <h1>Bake something <em>beautiful</em> today</h1>
+    <p>Simple, aesthetic cake & pastry recipes perfect for beginners. No fancy equipment needed — just love and a little flour! 🍰</p>
+    <div class="hero-btns">
+      <a href="#recipes" class="btn-pink">Browse Recipes</a>
+      <a href="#featured" class="btn-outline-pink">Featured Recipe</a>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories">
+  <div class="container">
+    <span class="section-tag">Browse By</span>
+    <h2 class="section-title">Categories</h2>
+    <div class="divider"></div>
+    <div class="cat-grid">
+      <a href="#recipes" class="cat-card">
+        <span class="cat-emoji">🎂</span>
+        <div class="cat-name">Layer Cakes</div>
+        <div class="cat-count">6 recipes</div>
+      </a>
+      <a href="#recipes" class="cat-card">
+        <span class="cat-emoji">🧁</span>
+        <div class="cat-name">Cupcakes</div>
+        <div class="cat-count">8 recipes</div>
+      </a>
+      <a href="#recipes" class="cat-card">
+        <span class="cat-emoji">🍪</span>
+        <div class="cat-name">Cookies</div>
+        <div class="cat-count">10 recipes</div>
+      </a>
+      <a href="#recipes" class="cat-card">
+        <span class="cat-emoji">🥐</span>
+        <div class="cat-name">Pastries</div>
+        <div class="cat-count">5 recipes</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- RECIPES -->
+<section id="recipes">
+  <div class="container">
+    <span class="section-tag">All Recipes</span>
+    <h2 class="section-title">Baked Goodies</h2>
+    <div class="divider"></div>
+    <div class="recipe-grid">
+
+      <div class="recipe-card r1" onclick="openRecipe('strawberry')">
+        <div class="recipe-thumb">🍓<span class="recipe-badge">Easy</span></div>
+        <div class="recipe-body">
+          <h3>Strawberry Cream Cake</h3>
+          <p>Fluffy vanilla sponge with fresh strawberry cream filling. Perfect for birthdays!</p>
+          <div class="recipe-meta">
+            <span>⏱ 1 hr 20 min</span>
+            <span>🍽 8 servings</span>
+            <span>⭐ 4.9</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card r2" onclick="openRecipe('caramel')">
+        <div class="recipe-thumb">🍮<span class="recipe-badge">Medium</span></div>
+        <div class="recipe-body">
+          <h3>Salted Caramel Cupcakes</h3>
+          <p>Moist brown sugar cupcakes topped with silky salted caramel buttercream.</p>
+          <div class="recipe-meta">
+            <span>⏱ 55 min</span>
+            <span>🍽 12 pieces</span>
+            <span>⭐ 4.8</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card r3" onclick="openRecipe('ube')">
+        <div class="recipe-thumb">💜<span class="recipe-badge">Easy</span></div>
+        <div class="recipe-body">
+          <h3>Ube Chiffon Cake</h3>
+          <p>Classic Filipino ube cake — light, fluffy, and beautifully purple. Paborito!</p>
+          <div class="recipe-meta">
+            <span>⏱ 1 hr</span>
+            <span>🍽 10 servings</span>
+            <span>⭐ 5.0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card r4" onclick="openRecipe('lavender')">
+        <div class="recipe-thumb">🌸<span class="recipe-badge">Easy</span></div>
+        <div class="recipe-body">
+          <h3>Lavender Honey Cookies</h3>
+          <p>Soft buttery cookies infused with lavender and drizzled with honey glaze.</p>
+          <div class="recipe-meta">
+            <span>⏱ 35 min</span>
+            <span>🍽 24 cookies</span>
+            <span>⭐ 4.7</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card r5" onclick="openRecipe('lemon')">
+        <div class="recipe-thumb">🍋<span class="recipe-badge">Medium</span></div>
+        <div class="recipe-body">
+          <h3>Lemon Drizzle Loaf</h3>
+          <p>Zesty, moist lemon loaf cake with a crackly sugar glaze on top. So refreshing!</p>
+          <div class="recipe-meta">
+            <span>⏱ 1 hr 10 min</span>
+            <span>🍽 8 slices</span>
+            <span>⭐ 4.8</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card r6" onclick="openRecipe('choco')">
+        <div class="recipe-thumb">🍫<span class="recipe-badge">Easy</span></div>
+        <div class="recipe-body">
+          <h3>Fudgy Brownies</h3>
+          <p>Super rich and fudgy brownies with crinkly tops. Only one bowl needed!</p>
+          <div class="recipe-meta">
+            <span>⏱ 40 min</span>
+            <span>🍽 16 pieces</span>
+            <span>⭐ 4.9</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section id="featured">
+  <div class="container">
+    <div class="featured-grid">
+      <div class="featured-visual">🎂</div>
+      <div class="featured-text">
+        <span class="featured-tag">✨ Recipe of the Month</span>
+        <h2>Classic Strawberry Shortcake</h2>
+        <p>The most requested recipe! Three layers of soft vanilla sponge, freshly whipped cream, and juicy strawberries. Simple ingredients, stunning result.</p>
+        <div class="ingredients-preview">
+          <h4>🧾 Key Ingredients</h4>
+          <div class="ing-list">
+            <span class="ing-pill">🌾 All-purpose flour</span>
+            <span class="ing-pill">🥚 Eggs</span>
+            <span class="ing-pill">🧈 Butter</span>
+            <span class="ing-pill">🍓 Strawberries</span>
+            <span class="ing-pill">🥛 Heavy cream</span>
+            <span class="ing-pill">🍬 Sugar</span>
+            <span class="ing-pill">🍦 Vanilla extract</span>
+          </div>
+        </div>
+        <a href="#" class="btn-pink" onclick="openRecipe('strawberry'); return false;">View Full Recipe →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section id="tips">
+  <div class="container">
+    <span class="section-tag">Baking 101</span>
+    <h2 class="section-title">Tips for Beginners</h2>
+    <div class="divider"></div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">🌡️</div>
+        <div>
+          <h4>Room Temp Ingredients</h4>
+          <p>Always use room temperature butter and eggs. Cold ingredients don't mix well and can affect your cake texture.</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">⚖️</div>
+        <div>
+          <h4>Measure Accurately</h4>
+          <p>Baking is science! Use a kitchen scale for best results. Too much flour = dry cake. Too little = flat cake.</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🚫</div>
+        <div>
+          <h4>Don't Overmix</h4>
+          <p>Once you add flour, mix just until combined. Overmixing develops gluten and makes your cake tough and dense.</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🔥</div>
+        <div>
+          <h4>Preheat Your Oven</h4>
+          <p>Always preheat! Putting cake batter into a cold oven will mess up the rise and baking time.</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🧁</div>
+        <div>
+          <h4>Cool Before Frosting</h4>
+          <p>Let your cake cool completely before adding frosting, or it will melt right off!</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📝</div>
+        <div>
+          <h4>Read the Full Recipe First</h4>
+          <p>Before you start, read the whole recipe so you know what's coming and have everything ready.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Ella's Bake Book</span>
+  <p>A sweet little corner of the internet dedicated to homemade cakes, cookies, and everything in between. Baked with love from Naga City. 🌸</p>
+  <div class="footer-links">
+    <a href="#categories">Categories</a>
+    <a href="#recipes">Recipes</a>
+    <a href="#tips">Tips</a>
+    <a href="#featured">Featured</a>
+  </div>
+  <div class="footer-bottom">© 2025 Ella's Bake Book · Made with 🌸 and flour</div>
+</footer>
+
+<script>
+  // Nav toggle
+  document.getElementById('menuBtn').addEventListener('click', () => {
+    document.getElementById('mainNav').classList.toggle('open');
+  });
+
+  // Recipe data
+  const recipes = {
+    strawberry: {
+      emoji: '🍓',
+      name: 'Strawberry Cream Cake',
+      time: '1 hr 20 min',
+      servings: '8 servings',
+      difficulty: 'Easy',
+      ingredients: [
+        '2 cups all-purpose flour',
+        '1½ cups sugar',
+        '½ cup butter, softened',
+        '3 eggs, room temperature',
+        '1 cup milk',
+        '2 tsp vanilla extract',
+        '2 tsp baking powder',
+        '½ tsp salt',
+        '2 cups fresh strawberries, sliced',
+        '1½ cups heavy whipping cream',
+        '3 tbsp powdered sugar'
+      ],
+      steps: [
+        'Preheat oven to 175°C. Grease two 9-inch round pans.',
+        'Cream butter and sugar until light and fluffy (3-4 mins).',
+        'Add eggs one at a time, then vanilla. Mix well.',
+        'Sift together flour, baking powder, and salt.',
+        'Alternate adding flour mixture and milk to the batter.',
+        'Divide batter into pans. Bake 28-32 minutes until toothpick comes out clean.',
+        'Cool completely on wire rack.',
+        'Whip heavy cream with powdered sugar until stiff peaks form.',
+        'Layer: cake → whipped cream → strawberries → cake → cream → strawberries.',
+        'Chill 30 minutes before serving. Enjoy! 🍓'
+      ]
+    },
+    ube: {
+      emoji: '💜',
+      name: 'Ube Chiffon Cake',
+      time: '1 hr',
+      servings: '10 servings',
+      difficulty: 'Easy',
+      ingredients: [
+        '2 cups cake flour',
+        '1½ cups sugar (divided)',
+        '1 tbsp baking powder',
+        '½ tsp salt',
+        '7 eggs, separated',
+        '½ cup ube halaya (purple yam jam)',
+        '½ cup vegetable oil',
+        '¾ cup water',
+        '1 tsp ube extract',
+        '½ tsp cream of tartar'
+      ],
+      steps: [
+        'Preheat oven to 165°C. Do NOT grease tube pan.',
+        'Mix flour, 1 cup sugar, baking powder, and salt.',
+        'Add egg yolks, oil, water, ube halaya, and ube extract. Mix until smooth.',
+        'In separate bowl, beat egg whites with cream of tartar until foamy.',
+        'Gradually add remaining ½ cup sugar. Beat until stiff peaks.',
+        'Fold egg whites gently into batter in 3 additions.',
+        'Pour into ungreased 10-inch tube pan.',
+        'Bake 55-60 minutes until top springs back.',
+        'Invert pan immediately and cool upside down for 1 hour.',
+        'Run knife around edges and release. Top with whipped cream! 💜'
+      ]
+    },
+    caramel: {
+      emoji: '🍮',
+      name: 'Salted Caramel Cupcakes',
+      time: '55 min',
+      servings: '12 cupcakes',
+      difficulty: 'Medium',
+      ingredients: [
+        '1½ cups all-purpose flour',
+        '1 cup brown sugar, packed',
+        '½ cup butter, softened',
+        '2 eggs',
+        '½ cup buttermilk',
+        '1 tsp vanilla',
+        '1 tsp baking powder',
+        '¼ tsp baking soda',
+        '¼ tsp salt',
+        'FOR FROSTING: 1 cup butter, 3 cups powdered sugar, ¼ cup caramel sauce, ½ tsp sea salt'
+      ],
+      steps: [
+        'Preheat oven to 175°C. Line cupcake tin with liners.',
+        'Cream butter and brown sugar until fluffy.',
+        'Beat in eggs one at a time, then vanilla.',
+        'Mix flour, baking powder, baking soda, and salt.',
+        'Alternate adding flour mixture and buttermilk.',
+        'Fill liners ⅔ full. Bake 18-20 minutes.',
+        'Cool completely before frosting.',
+        'For frosting: Beat butter until fluffy. Add powdered sugar, caramel, and sea salt.',
+        'Pipe onto cooled cupcakes. Drizzle extra caramel on top.',
+        'Sprinkle a pinch of sea salt. Sarap! 🍮'
+      ]
+    },
+    lavender: {
+      emoji: '🌸',
+      name: 'Lavender Honey Cookies',
+      time: '35 min',
+      servings: '24 cookies',
+      difficulty: 'Easy',
+      ingredients: [
+        '2¼ cups all-purpose flour',
+        '1 cup butter, softened',
+        '¾ cup powdered sugar',
+        '2 tbsp honey',
+        '1 tsp vanilla',
+        '1 tbsp dried culinary lavender',
+        '¼ tsp salt',
+        'FOR GLAZE: 1 cup powdered sugar, 2 tbsp milk, 1 tsp honey'
+      ],
+      steps: [
+        'Preheat oven to 175°C. Line baking sheets with parchment.',
+        'Beat butter and powdered sugar until light and fluffy.',
+        'Mix in honey and vanilla.',
+        'Add flour, lavender, and salt. Mix until dough forms.',
+        'Roll into 1-inch balls or use cookie cutter for shapes.',
+        'Place on baking sheet, press slightly flat.',
+        'Bake 12-14 minutes until edges are lightly golden.',
+        'Cool on wire rack for 10 minutes.',
+        'Mix glaze ingredients and drizzle over cooled cookies.',
+        'Let glaze set before serving. So pretty! 🌸'
+      ]
+    },
+    lemon: {
+      emoji: '🍋',
+      name: 'Lemon Drizzle Loaf',
+      time: '1 hr 10 min',
+      servings: '8 slices',
+      difficulty: 'Medium',
+      ingredients: [
+        '1½ cups all-purpose flour',
+        '1 cup sugar',
+        '½ cup butter, softened',
+        '2 eggs',
+        '½ cup plain yogurt',
+        'Zest of 2 lemons',
+        '2 tbsp lemon juice',
+        '1½ tsp baking powder',
+        '¼ tsp salt',
+        'FOR DRIZZLE: ¾ cup powdered sugar + 3 tbsp lemon juice'
+      ],
+      steps: [
+        'Preheat oven to 175°C. Grease a 9x5 loaf pan.',
+        'Cream butter and sugar with lemon zest until fluffy.',
+        'Add eggs one at a time, then yogurt and lemon juice.',
+        'Fold in flour, baking powder, and salt until just combined.',
+        'Pour into prepared pan. Bake 50-55 minutes.',
+        'Toothpick should come out clean.',
+        'While warm, poke holes all over with a skewer.',
+        'Mix drizzle ingredients and pour over warm cake.',
+        'Let it soak in and cool completely.',
+        'Slice and serve. The crackly top is the best part! 🍋'
+      ]
+    },
+    choco: {
+      emoji: '🍫',
+      name: 'Fudgy Brownies',
+      time: '40 min',
+      servings: '16 pieces',
+      difficulty: 'Easy',
+      ingredients: [
+        '½ cup butter',
+        '1 cup sugar',
+        '2 eggs',
+        '1 tsp vanilla',
+        '⅓ cup cocoa powder',
+        '½ cup all-purpose flour',
+        '¼ tsp salt',
+        '¼ tsp baking powder',
+        'Optional: ½ cup chocolate chips'
+      ],
+      steps: [
+        'Preheat oven to 175°C. Grease an 8x8 inch pan.',
+        'Melt butter in a large microwave-safe bowl.',
+        'Stir in sugar, eggs, and vanilla.',
+        'Beat in cocoa, flour, salt, and baking powder.',
+        'Fold in chocolate chips if using.',
+        'Spread evenly in prepared pan.',
+        'Bake exactly 25-30 minutes — do NOT overbake for fudgy texture!',
+        'Cool completely in pan before cutting.',
+        'Cut into 16 squares.',
+        'Tip: Refrigerate overnight for extra fudgy brownies! 🍫'
+      ]
+    }
+  };
+
+  function openRecipe(id) {
+    const r = recipes[id];
+    if (!r) return;
+    document.getElementById('modalContent').innerHTML = `
+      <h2>${r.emoji} ${r.name}</h2>
+      <div class="modal-meta">
+        <span>⏱ ${r.time}</span>
+        <span>🍽 ${r.servings}</span>
+        <span>📊 ${r.difficulty}</span>
+      </div>
+      <h3>🧾 Ingredients</h3>
+      <ul>${r.ingredients.map(i => `<li>${i}</li>`).join('')}</ul>
+      <h3>👩‍🍳 Instructions</h3>
+      <ol>${r.steps.map(s => `<li>${s}</li>`).join('')}</ol>
+    `;
+    document.getElementById('modalOverlay').classList.add('open');
+  }
+
+  document.getElementById('modalClose').addEventListener('click', () => {
+    document.getElementById('modalOverlay').classList.remove('open');
+  });
+  document.getElementById('modalOverlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('modalOverlay')) {
+      document.getElementById('modalOverlay').classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>
